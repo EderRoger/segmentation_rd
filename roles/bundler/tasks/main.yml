@@ -1,0 +1,11 @@
+- name: install bundler
+  shell: gem install bundler
+  tags:
+    - install
+    - bundler
+
+- name: update rubygems
+  shell: gem install rubygems-update
+  tags:
+    - install
+    - rubygems

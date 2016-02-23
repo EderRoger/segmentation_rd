@@ -1,0 +1,9 @@
+---
+- hosts: production
+  become: yes
+  become_method: sudo
+  roles:
+    - common
+    - rbenv
+    - bundler
+    - mongodb

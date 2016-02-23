@@ -1,0 +1,29 @@
+---
+- name: import the public key
+  shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+  tags:
+    - install
+    - mongodb
+
+- name: create a list file for mongodb
+  shell: echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+
+- name: install a latest release from mongodb
+  apt:  pkg=mongodb  state=latest update_cache=yes install_recommends=yes
+  tags:
+    - install
+    - mongodb
+    - latest
+
+- name: pin a especific version of mongo
+  shell: echo {{ item }} | sudo dpkg --set-selections
+  with_items:
+    -  "mongodb-org hold"
+    -  "mongodb-org-server hold"
+    -  "mongodb-org-shell hold"
+    -  "mongodb-org-mongos hold"
+    -  "mongodb-org-tools hold"
+  tags:
+    - install
+    - mongodb
+    - echo

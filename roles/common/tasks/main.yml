@@ -1,0 +1,28 @@
+---
+- name: "configuring locales"
+  shell: export LANGUAGE="en_US.UTF-8" && echo 'LANGUAGE="en_US.UTF-8"' >> /etc/default/locale && echo 'LC_ALL="en_US.UTF-8"' >> /etc/default/locale
+  tags:
+    - install
+    - locales
+- name: install build depends
+  apt: pkg={{ item }} state=latest install_recommends=no
+  with_items:
+    - build-essential
+    - git
+    - libcurl4-openssl-dev
+    - libmysqlclient-dev
+    - libreadline-dev
+    - libssl-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - zlib1g-dev
+    - openssl
+    - ruby-dev
+    - ssl-cert
+    - libyaml-dev
+    - bison
+    - libgmp-dev
+    - nodejs
+  tags:
+    - install
+    - dependencies
