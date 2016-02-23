@@ -8,6 +8,8 @@ gem 'thin', '1.6.4'
 gem 'net-ssh', '~>2.9.2'
 gem 'pg'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
     gem 'rspec-rails', '~> 3.0'
 end

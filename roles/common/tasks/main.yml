@@ -24,6 +24,7 @@
     - libgmp-dev
     - libpq-dev
     - nodejs
+    - python-psycopg2
   tags:
     - install
     - dependencies

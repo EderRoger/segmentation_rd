@@ -1,9 +1,8 @@
 ---
 - hosts: production
-  become: yes
-  become_method: sudo
+  sudo: yes
   roles:
     - common
     - rbenv
     - bundler
-    - mongodb
+    - postgres

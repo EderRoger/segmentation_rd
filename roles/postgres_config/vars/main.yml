@@ -1,0 +1,7 @@
+---
+POSTGRES_PASSWD: "$6$2snq7kHkLphbUzU$KSHsZ82qOPriJ5mOL8.tsR5gwZuohmgeln2t3zMTT.Wgcf5GayOoo4mD0jqb9jpfAJh6L0ov2Bbep4fI9wY2U."
+DB_DEV: "segmentation_development"
+DB_TEST: "segmentation_test"
+DB_PROD: "segmentation_production"
+DB_USER: "segmentation"
+DB_PASS: "secret"

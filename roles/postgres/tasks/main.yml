@@ -1,0 +1,37 @@
+---
+- name: "configuring locales"
+  shell: export LANGUAGE="en_US.UTF-8" && echo 'LANGUAGE="en_US.UTF-8"' >> /etc/default/locale && echo 'LC_ALL="en_US.UTF-8"' >> /etc/default/locale
+  tags:
+    - postgres
+    - locale
+    - install
+
+- name: "installing postgres"
+  apt: name=postgresql-{{ POSTGRES_VERSION }} state=present update_cache=yes install_recommends=yes
+  tags:
+    - postgres
+    - install
+
+- name: "installing postgres-contrib"
+  apt: name=postgresql-contrib-{{ POSTGRES_VERSION }} state=present update_cache=yes install_recommends=yes
+  tags:
+    - postgres
+    - postgres-contrib
+    - install
+
+- name: "replacing /etc/postgres/version/main/pg_hba.conf"
+  copy: src=pg_hba.conf dest=/etc/postgresql/{{ POSTGRES_VERSION }}/main/pg_hba.conf owner={{ POSTGRES_SUPERUSER }} mode=0644
+  tags:
+    - postgres
+    - conf
+
+- name: "replacing /etc/postgres/version/main/postgresql.conf"
+  copy: src=postgresql.conf dest=/etc/postgresql/{{ POSTGRES_VERSION }}/main/postgresql.conf owner={{ POSTGRES_SUPERUSER }} mode=0644
+  tags:
+    - postgres
+    - conf
+
+- service: name=postgresql state=restarted
+  tags:
+    - postgres
+    - restart

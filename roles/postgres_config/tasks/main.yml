@@ -1,0 +1,21 @@
+---
+- name: ensure database dev is created
+  postgresql_db: name={{DB_DEV}}
+
+- name: ensure database test is created
+  postgresql_db: name={{DB_TEST}}
+
+- name: ensure database production is created
+  postgresql_db: name={{DB_PROD}}
+
+- name: ensure user has access to database
+  postgresql_user: db={{DB_DEV}} name={{DB_USER}} password={{DB_PASS}} priv=ALL
+
+- name: ensure user has access to database
+  postgresql_user: db={{DB_TEST}} name={{DB_USER}} password={{DB_PASS}} priv=ALL
+
+- name: ensure user has access to database
+  postgresql_user: db={{DB_PROD}} name={{DB_USER}} password={{POSTGRES_PASSWD}} priv=ALL
+
+- name: ensure user does not have unnecessary privilege
+  postgresql_user: name={{DB_USER}} role_attr_flags=NOSUPERUSER,NOCREATEDB
