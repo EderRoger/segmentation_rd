@@ -22,6 +22,7 @@
     - libyaml-dev
     - bison
     - libgmp-dev
+    - libpq-dev
     - nodejs
   tags:
     - install
