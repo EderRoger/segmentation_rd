@@ -16,10 +16,19 @@ class QueryBuilder < ActiveRecord::Base
 
   def builder
    values = []
+   condition = ""
+   query = []
    JSON.parse(self.condition).each  do |value|
      obj = OpenStruct.new(value)
-     values << obj.value
+     values << obj.value unless obj.value.nil?
+     condition = condition + obj.field + "  #{obj.operator}" + " ? " unless obj.field.nil? and obj.operator.nil?
+     condition  = condition + "  #{obj.agregator} " unless obj.agregator.nil?
    end
+   query << condition
+   values.each_with_index do |value, index|
+      query << value
+   end
+   query
   end
 
 end
