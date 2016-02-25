@@ -41,10 +41,3 @@
 * execute bundle command ``bundle install`` and start the server ``sh start.sh`` (if appears bundle  error remove Gemfile.lock and re-run ``bundle install``)
 * open your browser and check http://localhost:3000
 
-##Considerations##
-
-* First I made a project using Rails to forms views (simple_form) but latter i realized to get a 100% of requirements I 
-  need it AngularJS but my time is just tight and this cannot be made.
-* I created a simple CRUD contact and a QueryBuilder form to make dinamic filters
-* The agregator 'OR' and 'AND' both be missing, because the time will be short :( sorry
-* The reason to created a stack using ansible was just to automate infrastructure. (DevOps culture :) )
