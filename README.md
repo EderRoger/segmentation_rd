@@ -1,9 +1,5 @@
 #Segmentation - RD#
 
-##Heroku deploy##
-
-* https://segmentationrd.herokuapp.com
-
 ##Requirements to run localy with Ansible provision##
 
 * Ansible
@@ -40,4 +36,3 @@
 * ``cd segmentation_rd``
 * execute bundle command ``bundle install`` and start the server ``sh start.sh`` (if appears bundle  error remove Gemfile.lock and re-run ``bundle install``)
 * open your browser and check http://localhost:3000
-
