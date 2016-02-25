@@ -1,0 +1,17 @@
+<div class="field">
+    <%= f.label "Field" %><br>
+    <%= f.select(:field, options_for_select(QueryBuilder::AVAILABLE_FIELDS)) %>
+  </div>
+  <div class="field">
+    <%= f.label "Operator" %><br>
+    <%= f.select(:operator, options_for_select(QueryBuilder::AVAILABLE_OPERATORS)) %>
+  </div>
+ <div class="field">
+    <%= f.label "Value" %><br>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="Agregator">
+    <%= f.label "Agregator" %><br>
+    <%= f.select(:agregator, options_for_select(QueryBuilder::AGREGATORS), {include_blank: 'None'}) %>
+  </div>

@@ -1,43 +1,16 @@
-<%= form_for(@query) do |f| %>
-  <% if @query.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@query.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-      <% @query.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= simple_form_for @query_builder, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <%= f.input :name %>
   </div>
-  <div class="field">
-    <%= f.label :condition %><br>
-    <%= f.text_field :condition %>
-  </div>
-  <div class="field">
-    <%= f.label "Field" %><br>
-    <%= f.select(:field, options_for_select(QueryBuilder::AVAILABLE_FIELDS)) %>
-  </div>
-  <div class="field">
-    <%= f.label "Operator" %><br>
-    <%= f.select(:operator, options_for_select(QueryBuilder::AVAILABLE_OPERATORS)) %>
-  </div>
- <div class="field">
-    <%= f.label "Value" %><br>
-    <%= f.text_field :value %>
+   <div class="field">
+  <%= f.input :condition, disabled: true %>
   </div>
 
-  <div class="Agregator">
-    <%= f.label "Agregator" %><br>
-    <%= f.select(:agregator, options_for_select(QueryBuilder::AGREGATORS), {include_blank: 'None'}) %>
-  </div>
-  </br>
-  <div class="actions">
-    <%= f.submit %>
+  <%= render :partial => 'fields', :locals=>{:f => f} %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                query_builders_path, :class => 'btn' %>
   </div>
 <% end %>

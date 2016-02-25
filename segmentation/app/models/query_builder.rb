@@ -13,7 +13,7 @@ class QueryBuilder < ActiveRecord::Base
   def to_json(value)
     value.delete("name")
     value.delete("condition")
-    value #.to_json
+    value
   end
 
   def builder

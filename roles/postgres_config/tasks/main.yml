@@ -1,4 +1,8 @@
 ---
+- service: name=postgresql state=restarted
+  tags:
+    - postgres
+    - restart
 - name: ensure database dev is created
   postgresql_db: name={{DB_DEV}}
 
