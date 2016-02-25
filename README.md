@@ -1,6 +1,6 @@
 #Segmentation - RD#
 
-##Heroku depoly##
+##Heroku deploy##
 
 * https://segmentationrd.herokuapp.com
 
@@ -44,7 +44,7 @@
 ##Considerations##
 
 * First I made a project using Rails to forms views (simple_form) but latter i realized to get a 100% of requirements I 
-  need it AngularJS but my time is just tied and this cannot be made.
+  need it AngularJS but my time is just tight and this cannot be made.
 * I created a simple CRUD contact and a QueryBuilder form to make dinamic filters
 * The agregator 'OR' and 'AND' both be missing, because the time will be short :( sorry
-* the reason to created a stack using ansible was just to automate infrastructure. (DevOps culture :) )
+* The reason to created a stack using ansible was just to automate infrastructure. (DevOps culture :) )
