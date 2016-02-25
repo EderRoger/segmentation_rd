@@ -1,24 +1,26 @@
+# encoding: utf-8
+
 require 'json'
 
 class QueryBuilder < ActiveRecord::Base
 
-  AVAILABLE_FIELDS = %w{ name, email, age, state, role }
-  AVAILABLE_OPERATORS = %w{ <, >, =, <=, >=}
-  AGREGATOR = %w{OR, AND}
+  AVAILABLE_FIELDS = %w{ name email age state role }
+  AVAILABLE_OPERATORS = %w{ < > = <= >=}
+  AGREGATORS = %w{OR AND}
 
-  def self.available_fields
-    AVAILABLE_FIELDS
-  end
+  attr_accessor :field, :operator, :agregator, :value
 
-  def self.available_operators
-    AVAILABLE_OPERATORS
+  def to_json(value)
+    value.delete("name")
+    value.delete("condition")
+    value #.to_json
   end
 
   def builder
    values = []
    condition = ""
    query = []
-   JSON.parse(self.condition).each  do |value|
+   eval(self.condition).each  do |value|
      obj = OpenStruct.new(value)
      values << obj.value unless obj.value.nil?
      condition = condition + obj.field + "  #{obj.operator}" + " ? " unless obj.field.nil? and obj.operator.nil?
@@ -30,5 +32,4 @@ class QueryBuilder < ActiveRecord::Base
    end
    query
   end
-
 end

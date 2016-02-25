@@ -1,7 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Contacts</h1>
+ <div class="field">
+   Segmentation query
+   <br>
 
+  <%= form_for(@contact ,:url => { :action => :segmentation }) do |f| %>
+   <%= collection_select( :query, :id, QueryBuilder.all, :id, :name) %>
+   <div class="actions">
+    <%= f.submit 'Apply'  %>
+  </div>
+<% end %>
+   </div>
 <table>
   <thead>
     <tr>
@@ -33,3 +43,4 @@
 <br>
 
 <%= link_to 'New Contact', new_contact_path %>
+<%= link_to 'New Query', new_query_builder_path %>

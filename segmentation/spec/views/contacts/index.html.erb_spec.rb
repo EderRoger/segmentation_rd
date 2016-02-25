@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "contacts/index", type: :view do
   before(:each) do
+    assign(:contact,
+      Contact.new
+    )
     assign(:contacts, [
       Contact.create!(
         :name => "Name",

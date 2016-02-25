@@ -1,8 +1,12 @@
+# encoding: utf-8
+
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  attr_accessor :query
 
   # GET /contacts
   def index
+    @contact = Contact.new
     @contacts = Contact.all
   end
 
@@ -45,6 +49,15 @@ class ContactsController < ApplicationController
     redirect_to contacts_url, notice: 'Contact was successfully destroyed.'
   end
 
+  def segmentation
+    query = QueryBuilder.where(id: params['query']['id']).first
+    p query.condition
+    @contact = Contact.new
+    @contacts = Contact.where(query.builder.each{|value| value })
+    query.builder.each{|value| p value }
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
@@ -53,6 +66,6 @@ class ContactsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :age, :state, :role)
+      params.require(:contact).permit(:name, :email, :age, :state, :role, :query)
     end
 end
